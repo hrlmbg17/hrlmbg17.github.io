@@ -243,27 +243,11 @@
                 <textarea name="message" id="message" class="materialize-textarea"></textarea>
                 <label for="message">Message</label>
               </div>
-              <button class="btn waves-effect waves-light blue accent-2" type="submit" name="send"
-                onclick="M.toast({html: 'Thanks! Your Message Have Been Sent.'})">Send
+              <button class="btn waves-effect waves-light blue accent-2 my-btn" type="submit" name="send">Send
                 <i class="material-icons right">send</i>
               </button>
             </div>
           </form>
-
-          <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzttI6-OyC_YmXNEaLXww54l2WHkUpBxuDU8SNxXdPcxycGBmrNQEcUJlesBvA-UkitRg/exec'
-            const form = document.forms['pl-contact-form']
-
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                  form.reset();
-                  console.log('Success!', response)
-                })
-                .catch(error => console.error('Error!', error.message))
-            })
-          </script>
         </div>
       </div>
     </div>
@@ -275,15 +259,6 @@
     <h5>Putri Lestari. Copyright 2021.</h5>
     </p>
   </footer>
-
-
-
-
-
-
-
-
-
 
 
   <!--JavaScript at end of body for optimized loading-->
@@ -313,11 +288,25 @@
       scrollOffset: 25
     });
 
+    const myBtn = document.querySelector('.my-btn');
+    myBtn.addEventListener('click', function () {
+      M.toast({ html: 'Thanks! Your Message Have Been Sent.' });
+    });
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzttI6-OyC_YmXNEaLXww54l2WHkUpBxuDU8SNxXdPcxycGBmrNQEcUJlesBvA-UkitRg/exec'
+    const form = document.forms['pl-contact-form']
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          form.reset();
+          console.log('Success!', response)
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+
   </script>
-
-
-
-
 </body>
 
 </html>
